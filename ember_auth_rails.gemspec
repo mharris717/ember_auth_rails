@@ -7,11 +7,11 @@ require "ember_auth_rails/version"
 Gem::Specification.new do |s|
   s.name        = "ember_auth_rails"
   s.version     = EmberAuthRails::VERSION
-  s.authors     = ["TODO: Your name"]
-  s.email       = ["TODO: Your email"]
-  s.homepage    = "TODO"
-  s.summary     = "TODO: Summary of EmberAuthRails."
-  s.description = "TODO: Description of EmberAuthRails."
+  s.authors     = ["Mike Harris"]
+  s.email       = ["mharris717@gmail.com"]
+  s.homepage    = "http://github.com/mharris717/ember_auth_rails"
+  s.summary     = "Rails engine to help with ember.js authentication"
+  s.description = "Rails engine to help with ember.js authentication"
 
   s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.rdoc"]
   s.test_files = Dir["test/**/*"]
