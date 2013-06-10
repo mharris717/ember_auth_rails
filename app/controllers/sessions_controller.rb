@@ -1,3 +1,21 @@
+def print_backtrace
+  raise 'foo'
+rescue => exp
+  puts exp.backtrace[1..-1].join("\n")
+end
+
+def raise_backtrace
+  raise 'foo'
+rescue => exp
+  raise exp.backtrace[1..35].join("\n")
+end
+
+class Symbol
+  def split(*args)
+    raise_backtrace
+  end
+end
+
 class SessionsController < Devise::SessionsController
   def index
     render :text => "Sup Index"
@@ -6,31 +24,39 @@ class SessionsController < Devise::SessionsController
     render :text => "Sup Show"
   end
 
-  def create
-    puts "IN AUTH CREATE"
+  before_filter "setup_user_params!"
 
+  def setup_user_params!
     if params[:email]
       params[:user] ||= {}
       params[:user][:email] ||= params[:email]
       params[:user][:password] ||= params[:password]
     end
-
-    resource = warden.authenticate!(:scope => resource_name, :recall => :failure)
-    return sign_in_and_redirect(resource_name, resource)
   end
-  
-  def sign_in_and_redirect(resource_or_scope, resource=nil)
-    scope = Devise::Mapping.find_scope!(resource_or_scope)
-    resource ||= resource_or_scope
-    sign_in(scope, resource) unless warden.user(scope) == resource
+  def create
+    puts 'here in session create'
+    login_from_token!
+    resource = current_user
+    raise "no user" unless current_user
+    render :json => {:auth_token => current_user.authentication_token, :user_id => current_user.id, :success => true}
+      #:redirect => stored_location_for(scope) || after_sign_in_path_for(current_user)}
+  end
 
-    #token = rand(1000000000000000000000000).to_s
-    #resource.auth_token = token
-    #resource.save!
-    return render :json => {:auth_token => resource.authentication_token, :user_id => resource.id, :success => true, :redirect => stored_location_for(scope) || after_sign_in_path_for(resource)}
+  def destroy
+    raise "no user" unless current_user
+    #raise "emails don't match" unless current_user.email == params[:user][:email]
+    puts "logging out #{current_user.email} | #{params.inspect}"
+    res = sign_out current_user
+    puts "current_user after sign out | #{res.inspect} | #{current_user.inspect}"
+    render :json => {:success => true}
   end
  
   def failure
+    raise 'in failure'
     return render:json => {:success => false, :errors => ["Login failed."]}
+  end
+
+  def options
+    head :ok
   end
 end
