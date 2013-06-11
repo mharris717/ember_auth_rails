@@ -4,6 +4,7 @@ module EmberAuthHelper
     if params[:auth_token].present?
       user = User.where(:authentication_token => params[:auth_token]).first
       raise "no user for token" unless user
+      Rails.logger.info "Logging in user #{user.id} #{user.email} with auth token #{params[:auth_token]}"
       sign_in user
     end
     true
