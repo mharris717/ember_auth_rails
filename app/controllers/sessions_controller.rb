@@ -34,12 +34,18 @@ class SessionsController < Devise::SessionsController
     end
   end
   def create
-    puts 'here in session create'
-    login_from_token!
+    puts "here in session create"
+    authenticate_user!
     resource = current_user
-    raise "no user" unless current_user
-    render :json => {:auth_token => current_user.authentication_token, :user_id => current_user.id, :success => true}
+    #raise "no user" unless current_user
+    if current_user
+      puts "login success"
+      render :json => {:auth_token => current_user.authentication_token, :user_id => current_user.id, :success => true}
       #:redirect => stored_location_for(scope) || after_sign_in_path_for(current_user)}
+    else
+      puts "login fail"
+      render :json => {:status => "error", :email => params[:user].andand[:email], :password => params[:user].andand[:password]}
+    end
   end
 
   def destroy
