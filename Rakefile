@@ -4,6 +4,7 @@ begin
 rescue LoadError
   puts 'You must `gem install bundler` and `bundle install` to run rake tasks'
 end
+
 begin
   require 'rdoc/task'
 rescue LoadError
@@ -25,7 +26,26 @@ load 'rails/tasks/engine.rake'
 
 
 
-Bundler::GemHelper.install_tasks
+require 'jeweler'
+Jeweler::Tasks.new do |gem|
+  # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
+  gem.name = "ember_auth_rails"
+  gem.homepage = "http://github.com/mharris717/ember_auth_rails"
+  gem.license = "MIT"
+  gem.summary = %Q{ember_auth_rails}
+  gem.description = %Q{ember_auth_rails}
+  gem.email = "mharris717@gmail.com"
+  gem.authors = ["Mike Harris"]
+  # dependencies defined in Gemfile
+end
+Jeweler::RubygemsDotOrgTasks.new
+
+require 'rspec/core'
+require 'rspec/core/rake_task'
+RSpec::Core::RakeTask.new(:spec) do |spec|
+  spec.pattern = FileList['spec/**/*_spec.rb']
+end
+
 
 require 'rake/testtask'
 
@@ -38,3 +58,5 @@ end
 
 
 task :default => :test
+
+
