@@ -56,7 +56,12 @@ Rake::TestTask.new(:test) do |t|
   t.verbose = false
 end
 
+task :migrate_dummy do
+  root = File.expand_path(File.dirname(__FILE__))
+  puts `cd #{root}/spec/dummy && rake db:migrate RAILS_ENV=test && cd ../..`
+end
 
-task :default => :spec
+
+task :default => [:migrate_dummy,:spec]
 
 
