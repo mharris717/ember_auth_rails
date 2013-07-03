@@ -19,6 +19,10 @@ Spork.prefork do
     config.use_transactional_fixtures = true
     config.infer_base_class_for_anonymous_controllers = false
     config.order = "random"
+
+    config.before(:each) do
+      @request.env["devise.mapping"] = Devise.mappings[:user] if @request
+    end
   end
 end
 
