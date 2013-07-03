@@ -1,18 +1,29 @@
-ENV['RAILS_ENV'] ||= 'test'
+require 'rubygems'
+require 'spork'
 
-require File.expand_path("../dummy/config/environment.rb",  __FILE__)
-require 'rspec/rails'
-require 'rspec/autorun'
-require 'factory_girl_rails'
+Spork.prefork do
+  ENV['RAILS_ENV'] ||= 'test'
 
-Rails.backtrace_cleaner.remove_silencers!
+  require File.expand_path("../dummy/config/environment.rb",  __FILE__)
+  require 'rspec/rails'
+  require 'rspec/autorun'
+  require 'factory_girl_rails'
 
-# Load support files
-Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each { |f| require f }
+  Rails.backtrace_cleaner.remove_silencers!
 
-RSpec.configure do |config|
-  config.mock_with :rspec
-  config.use_transactional_fixtures = true
-  config.infer_base_class_for_anonymous_controllers = false
-  config.order = "random"
+  # Load support files
+  Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each { |f| require f }
+
+  RSpec.configure do |config|
+    config.mock_with :rspec
+    config.use_transactional_fixtures = true
+    config.infer_base_class_for_anonymous_controllers = false
+    config.order = "random"
+  end
+end
+
+Spork.each_run do
+  Dir["#{Rails.root}/app/**/*.rb"].each do |f|
+    load f
+  end
 end

@@ -33,5 +33,21 @@ describe EmberUsersController do
       get :show, :id => user.id
       assigns(:user).email.should == user.email
     end
+
+    describe 'password' do
+      let(:new_password) { "pass#{rand(1000000000000)}" }
+
+      it 'change password' do
+        put :update, :id => user.id, :user => {:password => new_password}, :auth_token => user.authentication_token
+        user.reload
+        user.should be_valid_password(new_password)
+      end
+
+      it 'change password without login fails' do
+        put :update, :id => user.id, :user => {:password => new_password}
+        user.reload
+        user.should_not be_valid_password(new_password)
+      end
+    end
   end
 end
