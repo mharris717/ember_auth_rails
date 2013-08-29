@@ -3,5 +3,6 @@ class WidgetsController < ApplicationController
 
   def index
     @widgets = Widget.where(:user_id => current_user.id)
+    render :json => @widgets
   end
 end
