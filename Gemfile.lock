@@ -172,7 +172,7 @@ PLATFORMS
 DEPENDENCIES
   active_model_serializers
   bundler (~> 1.1)
-  devise
+  devise (< 3.0.0)
   factory_girl_rails
   guard
   guard-rspec

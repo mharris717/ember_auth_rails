@@ -13,7 +13,6 @@ end
 
 # jquery-rails is used by the dummy application
 gem "jquery-rails"
-gem 'devise'
 gem 'rails','3.2.13'
 
 #gem 'multiauth',:github => "mharris717/multiauth", :branch => :master
@@ -45,4 +44,4 @@ group :development, :test do
 end
 
 gem 'active_model_serializers'
-gem 'devise'
+gem 'devise',"< 3.0.0"
