@@ -5,4 +5,7 @@ Rails.application.routes.draw do
   devise_scope :user do
     get 'logout' => 'sessions#destroy'
   end
+
+  get "users/:id", to: "ember_users#show"
+  get "users/:id.json", to: "ember_users#show"
 end

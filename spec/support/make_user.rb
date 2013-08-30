@@ -7,7 +7,7 @@ def make_user
   a = "dbb8c110295d4dfaa8c386377d2e05e9"
   b = "c11b0047d2394bbf91dd27f6e9f45d98"
   res.save!
-  res.identities.create(:access_token => a, :access_secret => b, :provider => "fatsecret")
+  #res.identities.create(:access_token => a, :access_secret => b, :provider => "fatsecret")
   res
 end
 

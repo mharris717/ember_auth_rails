@@ -1,21 +1,3 @@
-def print_backtrace
-  raise 'foo'
-rescue => exp
-  puts exp.backtrace[1..-1].join("\n")
-end
-
-def raise_backtrace
-  raise 'foo'
-rescue => exp
-  raise exp.backtrace[1..35].join("\n")
-end
-
-class Symbol
-  def split(*args)
-    raise_backtrace
-  end
-end
-
 class SessionsController < Devise::SessionsController
   def index
     render :text => "Sup Index"
@@ -39,7 +21,8 @@ class SessionsController < Devise::SessionsController
     if current_user
       render :json => {:auth_token => current_user.authentication_token, :user_id => current_user.id, :success => true}
     else
-      render :status => 404, :json => {:status => "error", :email => params[:user].andand[:email], :password => params[:user].andand[:password]}
+      pu = params[:user] || {}
+      render :status => 404, :json => {:status => "errorWHEEE", :email => pu[:email], :password => pu[:password]}
     end
   end
 

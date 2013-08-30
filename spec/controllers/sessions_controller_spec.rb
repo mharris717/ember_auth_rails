@@ -11,6 +11,11 @@ describe SessionsController do
       controller.current_user.should == user
     end
 
+    it 'failed login with token' do
+      get :create, :auth_token => rand(10000000000000).to_s
+      controller.current_user.should be_nil
+    end
+
     describe "Logged in" do
       before do
         get :create, :auth_token => user.authentication_token

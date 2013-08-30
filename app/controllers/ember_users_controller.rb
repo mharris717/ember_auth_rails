@@ -1,4 +1,6 @@
 class EmberUsersController < ApplicationController
+  before_filter :authenticate_user!
+
   def get_user_by_ident(ident)
     raise "no user ident" unless ident.present?
     if ident.to_s.length >= 10
@@ -16,9 +18,9 @@ class EmberUsersController < ApplicationController
   end
 
   def update
-    authenticate_ember_user!
+    pu = params[:user] || {}
     @user = get_user_by_ident(params[:id])
-    new_password = params[:user].andand[:password]
+    new_password = pu[:password]
     raise "no password" unless new_password.present?
     @user.password = new_password
     if @user.save

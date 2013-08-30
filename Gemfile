@@ -16,7 +16,7 @@ gem "jquery-rails"
 gem 'devise'
 gem 'rails','3.2.13'
 
-gem 'multiauth',:github => "mharris717/multiauth", :branch => :master
+#gem 'multiauth',:github => "mharris717/multiauth", :branch => :master
 
 # Declare any dependencies that are still in development here instead of in
 # your gemspec. These might include edge Rails or gems from your path or
@@ -40,11 +40,9 @@ group :development, :test do
   gem 'factory_girl_rails'
 
   gem 'lre'
+
+  gem 'rspec-mocks','~> 2.13.0'
 end
 
-gem 'mharris_ext'
-gem 'inherited_resources'
-gem 'haml'
 gem 'active_model_serializers'
-gem 'rspec-mocks','~> 2.13.0'
-gem 'andand'
+gem 'devise'
