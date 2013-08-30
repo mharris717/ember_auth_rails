@@ -1,12 +1,17 @@
 = EmberAuthRails
 
-# Add ember_auth_rails to your gemfile
-# Copy the EAR migrations over
+This library is intended to be used with Ember.js and the 
+[ember-auth-easy](http://github.com/mharris717/ember-auth-easy) javascript library.
+
+It adds token authentication to your Rails app (thanks Devise!).
+
+1. Add ember_auth_rails to your gemfile
+2. Copy the EAR migrations over
     rake ember_auth_rails_engine:install:migrations
-# Run the migrations
-# Add the authenticate_user! filter to your controllers
+3. Run the migrations
+4. Add the authenticate_user! filter to your controllers
     class PostsController < ApplicationController
-        before_filter authenticate_user!
+        before_filter :authenticate_user!
 
         ....
     end
