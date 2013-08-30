@@ -5,7 +5,7 @@ describe EmberUsersController do
 
   describe "GET index" do
     it 'show' do
-      get :show, :id => user.id
+      get :show, :id => user.id, :auth_token => user.authentication_token
       assigns(:user).email.should == user.email
     end
 
