@@ -5,22 +5,22 @@
 
 Gem::Specification.new do |s|
   s.name = "ember_auth_rails"
-  s.version = "0.0.1"
+  s.version = "0.1.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Mike Harris"]
-  s.date = "2013-08-30"
+  s.date = "2013-09-01"
   s.description = "ember_auth_rails"
   s.email = "mharris717@gmail.com"
   s.extra_rdoc_files = [
-    "README.rdoc"
+    "README.md"
   ]
   s.files = [
     "Gemfile",
     "Gemfile.lock",
     "Guardfile",
     "MIT-LICENSE",
-    "README.rdoc",
+    "README.md",
     "Rakefile",
     "VERSION",
     "app/assets/images/ember_auth_rails/.gitkeep",
