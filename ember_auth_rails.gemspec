@@ -106,11 +106,11 @@ Gem::Specification.new do |s|
   s.homepage = "http://github.com/mharris717/ember_auth_rails"
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
-  s.rubygems_version = "1.8.25"
+  s.rubygems_version = "2.0.7"
   s.summary = "ember_auth_rails"
 
   if s.respond_to? :specification_version then
-    s.specification_version = 3
+    s.specification_version = 4
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<jquery-rails>, [">= 0"])
