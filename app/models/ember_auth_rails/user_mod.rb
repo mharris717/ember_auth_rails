@@ -11,7 +11,7 @@ module EmberAuthRails
 
       before_save :ensure_authentication_token
 
-      attr_accessible :email, :password
+      attr_accessible :email, :password, :authentication_token
     end
   end
 end
