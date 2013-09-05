@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Mike Harris"]
-  s.date = "2013-09-01"
+  s.date = "2013-09-05"
   s.description = "ember_auth_rails"
   s.email = "mharris717@gmail.com"
   s.extra_rdoc_files = [
@@ -28,6 +28,7 @@ Gem::Specification.new do |s|
     "app/assets/stylesheets/ember_auth_rails/.gitkeep",
     "app/controllers/.gitkeep",
     "app/controllers/ember_users_controller.rb",
+    "app/controllers/registrations_controller.rb",
     "app/controllers/sessions_controller.rb",
     "app/helpers/.gitkeep",
     "app/helpers/ember_auth_helper.rb",
