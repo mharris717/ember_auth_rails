@@ -17,6 +17,12 @@ class EmberUsersController < ApplicationController
     render :json => @user
   end
 
+  def index
+    raise "no auth token" unless params[:auth_token].present?
+    @users = User.where(:authentication_token => params[:auth_token])
+    render :json => @users, :root => "users"
+  end
+
   def update
     pu = params[:user] || {}
     @user = get_user_by_ident(params[:id])

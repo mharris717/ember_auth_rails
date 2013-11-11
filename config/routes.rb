@@ -12,4 +12,5 @@ Rails.application.routes.draw do
 
   get "users/:id", to: "ember_users#show"
   get "users/:id.json", to: "ember_users#show"
+  get "users.json", to: "ember_users#index"
 end
